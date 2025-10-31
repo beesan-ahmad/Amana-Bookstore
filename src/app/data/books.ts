@@ -874,5 +874,25 @@ export const books: Book[] = [
     reviewCount: 16,
     inStock: true,
     featured: true,
+  },
+  {
+    id: '46',
+    title: 'Returning to Haifa',
+    author: 'Ghassan Kanafani',
+    description: 'A powerful and emotional novella that explores the aftermath of the 1948 Palestinian exodus through the story of a couple returning to their home in Haifa after twenty years, only to find unexpected truths about loss, identity, and belonging.',
+    price: 39.95,
+    image: '/images/returning-to-haifa.jpg',
+    isbn: '978-9953268184',
+    genre: ['Fiction', 'Political Literature'],
+    tags: ['Palestine', 'Nakba', 'Identity', 'Exile'],
+    datePublished: '1969-03-01',
+    pages: 112,
+    language: 'Arabic',
+    publisher: 'Arab Institute for Research & Publishing',
+    rating: 4.9,
+    reviewCount: 245,
+    inStock: true,
+    featured: true,
+
   }
 ];

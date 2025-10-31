@@ -19,7 +19,7 @@ const BookCard: React.FC<BookCardProps> = ({ book, onAddToCart }) => {
     const stars = [];
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
-    
+
     for (let i = 1; i <= 5; i++) {
       if (i <= fullStars) {
         // Full star
@@ -58,19 +58,19 @@ const BookCard: React.FC<BookCardProps> = ({ book, onAddToCart }) => {
   const handleAddToCart = async (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent navigation when clicking the button
     e.stopPropagation();
-    
+
     if (!book.inStock || isAddingToCart) return;
-    
+
     setIsAddingToCart(true);
-    
+
     try {
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 500));
-      
+
       if (onAddToCart) {
         onAddToCart(book.id);
       }
-      
+
       // Show success feedback
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 2000);
@@ -90,19 +90,19 @@ const BookCard: React.FC<BookCardProps> = ({ book, onAddToCart }) => {
           <div className="text-6xl text-gray-400">📚</div>
         </div>
       </Link>
-      
+
       {/* Book Information */}
       <div className="p-4">
         <Link href={`/book/${book.id}`} className="block cursor-pointer">
           <h3 className="text-lg font-semibold text-gray-800 truncate hover:text-blue-600 transition-colors duration-200">{book.title}</h3>
           <p className="text-sm text-gray-600 mt-1">by {book.author}</p>
         </Link>
-        
+
         <div className="flex items-center mt-2">
           {renderStars(book.rating)}
           <span className="text-xs text-gray-500 ml-2">({book.reviewCount} reviews)</span>
         </div>
-        
+
         <div className="mt-2">
           {book.genre.slice(0, 2).map((g) => (
             <span key={g} className="inline-block bg-gray-200 rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">
@@ -113,34 +113,34 @@ const BookCard: React.FC<BookCardProps> = ({ book, onAddToCart }) => {
             <span className="text-xs text-gray-500">+{book.genre.length - 2} more</span>
           )}
         </div>
-        
+
         <div className="flex items-center justify-between mt-3">
           <p className="text-xl font-bold text-gray-900">${book.price.toFixed(2)}</p>
           {!book.inStock && (
             <span className="text-xs text-red-600 font-medium">Out of Stock</span>
           )}
         </div>
-        
+
         {/* Action Buttons */}
         <div className="flex gap-2 mt-4">
           <Link href={`/book/${book.id}`} className="flex-1 cursor-pointer">
-            <button className="w-full px-3 py-2 text-sm border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors duration-200 cursor-pointer">
+            <button className="w-full px-3 py-2 text-sm border border-blue-500 text-blue-600 rounded-md hover:bg-blue-50 transition-colors duration-200 cursor-pointer">
               View Details
             </button>
+
           </Link>
-          
+
           <button
             onClick={handleAddToCart}
             disabled={!book.inStock || isAddingToCart}
-            className={`flex-1 px-3 py-2 text-sm rounded-md transition-colors duration-200 ${
-              !book.inStock
+            className={`flex-1 px-3 py-2 text-sm rounded-md transition-colors duration-200 ${!book.inStock
                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 : showSuccess
-                ? 'bg-green-600 text-white cursor-pointer'
-                : isAddingToCart
-                ? 'bg-blue-400 text-white cursor-wait'
-                : 'bg-blue-600 text-white hover:bg-blue-700 cursor-pointer'
-            }`}
+                  ? 'bg-green-600 text-white cursor-pointer'
+                  : isAddingToCart
+                    ? 'bg-blue-400 text-white cursor-wait'
+                    : 'bg-blue-600 text-white hover:bg-blue-700 cursor-pointer'
+              }`}
           >
             {showSuccess ? (
               <span className="flex items-center justify-center gap-1">

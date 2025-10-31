@@ -27,7 +27,7 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
   // Carousel settings for featured books
   const booksPerPage = 4;
   const totalFeaturedPages = Math.ceil(featuredBooks.length / booksPerPage);
-  
+
   // Get current featured books to display
   const currentFeaturedBooks = useMemo(() => {
     const startIndex = featuredCarouselIndex * booksPerPage;
@@ -37,13 +37,13 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
 
   // Carousel navigation functions
   const goToPreviousFeatured = () => {
-    setFeaturedCarouselIndex(prev => 
+    setFeaturedCarouselIndex(prev =>
       prev === 0 ? totalFeaturedPages - 1 : prev - 1
     );
   };
 
   const goToNextFeatured = () => {
-    setFeaturedCarouselIndex(prev => 
+    setFeaturedCarouselIndex(prev =>
       prev === totalFeaturedPages - 1 ? 0 : prev + 1
     );
   };
@@ -62,11 +62,11 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
   const filteredAndSortedBooks = useMemo(() => {
     // First filter the books
     const filtered = books.filter(book => {
-      const matchesSearch = 
+      const matchesSearch =
         book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         book.author.toLowerCase().includes(searchQuery.toLowerCase());
-      
-      const matchesGenre = 
+
+      const matchesGenre =
         selectedGenre === 'All' || book.genre.includes(selectedGenre);
 
       return matchesSearch && matchesGenre;
@@ -144,16 +144,15 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
                   <button
                     key={index}
                     onClick={() => goToFeaturedPage(index)}
-                    className={`w-2 h-2 rounded-full transition-colors duration-200 cursor-pointer ${
-                      index === featuredCarouselIndex 
-                        ? 'bg-blue-600' 
+                    className={`w-2 h-2 rounded-full transition-colors duration-200 cursor-pointer ${index === featuredCarouselIndex
+                        ? 'bg-blue-600'
                         : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
+                      }`}
                     aria-label={`Go to featured books page ${index + 1}`}
                   />
                 ))}
               </div>
-              
+
               {/* Navigation Buttons */}
               <div className="flex gap-2">
                 <button
@@ -178,7 +177,7 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
             </div>
           )}
         </div>
-        
+
         {/* Featured Books Carousel */}
         <div className="relative">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -186,7 +185,7 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
               <BookCard key={book.id} book={book} onAddToCart={onAddToCart} />
             ))}
           </div>
-          
+
           {/* Show current page info */}
           {totalFeaturedPages > 1 && (
             <div className="text-center mt-4 text-sm text-gray-600">
@@ -206,9 +205,10 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
               placeholder="Search by title or author..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-5 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
             />
           </div>
+
           <div className="w-full md:w-1/4">
             <label htmlFor="genreFilter" className="block text-sm font-medium text-gray-700 mb-2">
               Filter by Genre:
@@ -288,7 +288,7 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
                 <BookListItem key={book.id} book={book} onAddToCart={onAddToCart} />
               ))}
             </div>
-            
+
             {/* Pagination */}
             <Pagination
               currentPage={currentPage}
